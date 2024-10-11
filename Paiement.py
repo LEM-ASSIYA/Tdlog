@@ -1,5 +1,5 @@
 class Paiement:
-    def _init_(self, id_paiement, mode_paiement, montant):
+    def __init__(self, id_paiement, mode_paiement, montant):
         self.id_paiement = id_paiement
         self.mode_paiement = mode_paiement
         self.montant = montant

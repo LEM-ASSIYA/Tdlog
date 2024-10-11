@@ -1,5 +1,5 @@
 class Gerant(Utilisateur):
-    def _init_(self, id, nom, email, mot_de_passe):
+    def __init__(self, id, nom, email, mot_de_passe):
         super()._init_(id, nom, email, mot_de_passe)
 
     def gerer_employes(self):

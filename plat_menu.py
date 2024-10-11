@@ -1,5 +1,5 @@
 class Plat:
-    def _init_(self, id_plat, nom, prix, temps_preparation):
+    def __init__(self, id_plat, nom, prix, temps_preparation):
         self.id_plat = id_plat
         self.nom = nom
         self.prix = prix
@@ -7,7 +7,7 @@ class Plat:
 
 
 class Menu:
-    def _init_(self, id_menu, nom):
+    def __init__(self, id_menu, nom):
         self.id_menu = id_menu
         self.nom = nom
         self.liste_plats = []
