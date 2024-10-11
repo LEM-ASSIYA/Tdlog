@@ -1,7 +1,6 @@
 class Serveur(Utilisateur):
-    def __init__(self, id, nom, email, mot_de_passe, id_serveur):
+    def __init__(self, id, nom, email, mot_de_passe):
         super().__init__(id, nom, email, mot_de_passe)
-        self.id_serveur = id_serveur
         self.liste_tables_attribuees = []
 
     def prendre_commande(self):
