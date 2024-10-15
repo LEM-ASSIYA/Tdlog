@@ -65,3 +65,23 @@ class Livreur:
     def notifier_restaurant_livraison_effectuee(self, commande):
         """Notifie le restaurant que la livraison est effectuée."""
         print(f"Livreur {self.nom} informe le restaurant que la commande {commande['id']} a été livrée avec succès.")
+
+
+commande = {
+    "id": 101,
+    "plat": "Pizza Margherita",
+    "ingredients": ["tomate", "fromage", "basilic"],
+    "statut": "Prêt",
+    "adresse_client": "123 Rue de la Pizzeria"
+}
+
+livreur = Livreur(1, "Livreur Paul", "0601020304")
+
+# Le serveur notifie le livreur que la commande est prête
+livreur.recevoir_notification(commande)
+
+# Le livreur récupère l'adresse du client
+livreur.recuperer_adresse_client(commande)
+
+# Le livreur effectue la livraison
+livreur.effectuer_livraison(commande)
