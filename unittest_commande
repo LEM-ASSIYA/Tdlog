@@ -1,5 +1,6 @@
 import unittest
-import Plat,Commande
+import Plat
+from commande import Commande
 
 
 class TestCommande(unittest.TestCase):
