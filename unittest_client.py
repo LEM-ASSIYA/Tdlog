@@ -1,6 +1,7 @@
 import unittest
-import Client, Commande,Facture,Reservation, Plat, Menu
-
+import Commande,Facture,Plat, Menu
+from client import Client
+from Reservation import Reservation
 class TestClient(unittest.TestCase):
 
     def setUp(self):
