@@ -33,10 +33,6 @@ class Inventaire:
             return data.get("inventaire", {})
         
 
-
-
-
-
     def sauvegarder_inventaire(self):
         """Sauvegarder l'inventaire mis à jour dans la base de données JSON"""
         with open(self.database_file, 'r') as db:
@@ -47,18 +43,20 @@ class Inventaire:
         with open(self.database_file, 'w') as db:
             json.dump(data, db, indent=4)
 
+    def mettre_à_jour_stock(self, ingrédient, quantité):
+        """Mettre à jour la quantité d'un ingrédient dans l'inventaire"""
+        if quantité < 0:
+            raise ValueError(f"Erreur : la quantité pour {ingrédient} doit être positive.")
+        
+        if ingrédient in self.stock:
+            self.stock[ingrédient] = quantité
+        else:
+            self.stock[ingrédient] = quantité
 
 
 
 
 
-#     def consulterStock(self, ingrédient):
-#         if ingrédient not in self.stock:
-#             raise KeyError(f"Erreur : {ingrédient} n'est pas dans la liste des ingrédients.")
-#         if self.stock[ingrédient] < 0:
-#             raise ValueError(f"Erreur : la quantité de {ingrédient} est invalide.")
-#         else:
-#             return f"Stock de {ingrédient} : {self.stock[ingrédient]}"
 
 # invent = Inventaire([1, 2, 3], ["Tomates", "Fromage", "Viande"], [15, 5, 10])
 # print(invent.mettreÀJourStock("Viande", 20)) 
