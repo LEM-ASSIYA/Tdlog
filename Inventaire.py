@@ -7,10 +7,6 @@ class Inventaire:
         self.stock = {}
 
 
-
-
-
-
         if idInventaire is not None and listeIngrédients is not None and quantitéIngrédient is not None:
             # Si les ingrédients et quantités sont fournis, initialisez l'inventaire
             if len(listeIngrédients) != len(quantitéIngrédient):
@@ -33,30 +29,38 @@ class Inventaire:
             return data.get("inventaire", {})
         
 
+    def sauvegarder_inventaire(self):
+        """Sauvegarder l'inventaire mis à jour dans la base de données JSON"""
+        with open(self.database_file, 'r') as db:
+            data = json.load(db)
+        
+        data["inventaire"] = self.stock
+        
+        with open(self.database_file, 'w') as db:
+            json.dump(data, db, indent=4)
+
+    def mettre_à_jour_stock(self, ingrédient, quantité):
+        """Mettre à jour la quantité d'un ingrédient dans l'inventaire"""
+        if quantité < 0:
+            raise ValueError(f"Erreur : la quantité pour {ingrédient} doit être positive.")
+        
+        if ingrédient in self.stock:
+            self.stock[ingrédient] = quantité
+        else:
+            self.stock[ingrédient] = quantité
 
 
 
 
-
-
-#     def mettreÀJourStock(self, Ingrédient, quantité):
-#         if quantité < 0:
-#             raise ValueError(f"Erreur : la quantité pour {Ingrédient} doit être positive.")
-#         if Ingrédient in self.stock:
-#             self.stock[Ingrédient] = quantité
-#         else:
-#             self.stock[Ingrédient] = quantité  
-
-#         return f"Stock de {Ingrédient} mis à jour à {quantité}."
+        self.sauvegarder_inventaire()  # Sauvegarder après modification
+        return f"Stock de {ingrédient} mis à jour à {quantité}."
     
-#     def consulterStock(self, ingrédient):
-#         if ingrédient not in self.stock:
-#             raise KeyError(f"Erreur : {ingrédient} n'est pas dans la liste des ingrédients.")
-#         if self.stock[ingrédient] < 0:
-#             raise ValueError(f"Erreur : la quantité de {ingrédient} est invalide.")
-#         else:
-#             return f"Stock de {ingrédient} : {self.stock[ingrédient]}"
+    def consulter_stock(self, ingrédient):
+        """Consulter le stock d'un ingrédient"""
+        if ingrédient not in self.stock:
+            raise KeyError(f"Erreur : {ingrédient} n'est pas dans la liste des ingrédients.")
+        
+        return f"Stock de {ingrédient} : {self.stock[ingrédient]}"
 
-# invent = Inventaire([1, 2, 3], ["Tomates", "Fromage", "Viande"], [15, 5, 10])
-# print(invent.mettreÀJourStock("Viande", 20)) 
-# print(invent.consulterStock("Fromage"))
+
+
