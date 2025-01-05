@@ -56,23 +56,18 @@ class AuthentificationApp:
             messagebox.showerror("Erreur", "Nom d'utilisateur ou mot de passe incorrect.")
 
     def ouvrir_interface_role(self, role):
-        self.root.destroy()
         if role == "chef":
-            root = tk.Tk()
-            app = InterfaceChef(root)
-            root.mainloop()
+            top = tk.Toplevel(self.root)
+            app = InterfaceChef(top)
         elif role == "client":
-            root = tk.Tk()
-            app = InterfaceClient(root)
-            root.mainloop()
+            top = tk.Toplevel(self.root)
+            app = InterfaceClient(top)
         elif role == "gerant":
-            root = tk.Tk()
-            app = InterfaceGerant(root)
-            root.mainloop()
+            top = tk.Toplevel(self.root)
+            app = InterfaceGerant(top)
         elif role == "serveur":
-            root = tk.Tk()
-            app = InterfaceServeur(root)
-            root.mainloop()    
+            top = tk.Toplevel(self.root)
+            app = InterfaceServeur(top)
 
 if __name__ == "__main__":
     root = tk.Tk()

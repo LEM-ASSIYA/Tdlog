@@ -28,7 +28,7 @@
 from abc import ABC, abstractmethod
 import tkinter as tk
 from tkinter import messagebox
-
+from Plat import Plat
 # ✅ Classe abstraite Utilisateur
 class Utilisateur(ABC):
     def __init__(self, id, nom, email, mot_de_passe):
@@ -142,6 +142,8 @@ class InterfaceChef:
         tk.Button(root, text="Consulter Commandes", command=self.consulter_commandes).pack(pady=10)
         tk.Button(root, text="Valider Commande", command=self.valider_commande).pack(pady=10)
         tk.Button(root, text="Notifier Serveur", command=self.notifier_serveur).pack(pady=10)
+        tk.Button(root, text="Ajouter Plat", command=self.ajouter_plat).pack(pady=5)
+        tk.Button(root, text="Modifier Plat", command=self.modifier_plat).pack(pady=5)
         tk.Button(root, text="Se Déconnecter", command=self.se_deconnecter).pack(pady=10)
 
     def consulter_commandes(self):
@@ -162,7 +164,86 @@ class InterfaceChef:
         root = tk.Tk()
         app = AuthentificationApp(root)
         root.mainloop()
+        
+    def ajouter_plat(self):
+        # Create new window for adding plat
+        plat_window = tk.Toplevel(self.root)
+        plat_window.title("Ajouter Plat")
+        plat_window.geometry("400x300")
 
+        tk.Label(plat_window, text="ID Plat:").pack()
+        id_entry = tk.Entry(plat_window)
+        id_entry.pack()
+
+        tk.Label(plat_window, text="Nom:").pack()
+        nom_entry = tk.Entry(plat_window)
+        nom_entry.pack()
+
+        tk.Label(plat_window, text="Prix:").pack()
+        prix_entry = tk.Entry(plat_window)
+        prix_entry.pack()
+
+        tk.Label(plat_window, text="Temps de préparation:").pack()
+        temps_entry = tk.Entry(plat_window)
+        temps_entry.pack()
+
+        def save_plat():
+            nouveau_plat = Plat(
+                id_entry.get(),
+                nom_entry.get(),
+                float(prix_entry.get()),
+                int(temps_entry.get())
+            )
+            messagebox.showinfo("Succès", f"Plat {nouveau_plat.nom} ajouté avec succès!")
+            plat_window.destroy()
+
+        tk.Button(plat_window, text="Sauvegarder", command=save_plat).pack(pady=20)
+
+    def modifier_plat(self):
+        # Create a new window for modifying the dish
+        modifier_window = tk.Toplevel(self.root)
+        modifier_window.title("Modifier Plat")
+        modifier_window.geometry("400x300")
+
+        # Labels and entry fields for the dish details
+        tk.Label(modifier_window, text="ID du Plat:").pack(pady=5)
+        id_entry = tk.Entry(modifier_window)
+        id_entry.pack(pady=5)
+
+        tk.Label(modifier_window, text="Nom du Plat:").pack(pady=5)
+        nom_entry = tk.Entry(modifier_window)
+        nom_entry.pack(pady=5)
+
+        tk.Label(modifier_window, text="Prix du Plat:").pack(pady=5)
+        prix_entry = tk.Entry(modifier_window)
+        prix_entry.pack(pady=5)
+
+        tk.Label(modifier_window, text="Temps de Préparation:").pack(pady=5)
+        temps_entry = tk.Entry(modifier_window)
+        temps_entry.pack(pady=5)
+
+        def save_modifications():
+            # Logic to update the dish details
+            plat_id = id_entry.get()
+            nouveau_nom = nom_entry.get()
+            nouveau_prix = float(prix_entry.get())
+            nouveau_temps = int(temps_entry.get())
+
+            # Assuming you have a list of plats, update the corresponding plat
+            for plat in self.plats:
+                if plat.id == plat_id:
+                    plat.nom = nouveau_nom
+                    plat.prix = nouveau_prix
+                    plat.temps_preparation = nouveau_temps
+                    messagebox.showinfo("Succès", f"Plat {plat.nom} modifié avec succès!")
+                    break
+            else:
+                messagebox.showerror("Erreur", "Plat non trouvé")
+
+            modifier_window.destroy()
+
+        # Button to save the modifications
+        tk.Button(modifier_window, text="Sauvegarder", command=save_modifications).pack(pady=20)
 
 #  Lancer l'application
 if __name__ == "__main__":
