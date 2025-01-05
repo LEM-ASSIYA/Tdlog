@@ -1,4 +1,5 @@
 import tkinter as tk
+
 from tkinter import messagebox
 
 class InterfaceGerant:
@@ -13,6 +14,9 @@ class InterfaceGerant:
         tk.Button(root, text="Gérer Employés", command=self.gerer_employes).pack(pady=10)
         tk.Button(root, text="Consulter Rapports", command=self.consulter_rapports).pack(pady=10)
         tk.Button(root, text="Se Déconnecter", command=root.quit).pack(pady=10)
+
+
+
 
     def gerer_employes(self):
         messagebox.showinfo("Gestion Employés", "Employés gérés avec succès.")
