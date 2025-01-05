@@ -23,14 +23,21 @@ class Inventaire:
 
 
 
+    def charger_inventaire(self):
+        """Charger l'inventaire depuis la base de données JSON"""
+        if not os.path.exists(self.database_file):
+            raise FileNotFoundError(f"Le fichier {self.database_file} n'a pas été trouvé.")
+        
+        with open(self.database_file, 'r') as db:
+            data = json.load(db)
+            return data.get("inventaire", {})
+        
 
-#Class Inventaire :
 
-#     def __init__(self, idInventaire, listeIngrédients, quantitéIngrédient):
-#         if len(listeIngrédients) != len(quantitéIngrédient):
-#             raise ValueError("La longueur de 'listeIngrédients' doit correspondre à celle de 'quantitésIngrédients'.")
-#         self.idInventaire = idInventaire
-#         self.stock = dict(zip(listeIngrédients, quantitéIngrédient))
+
+
+
+
 
 #     def mettreÀJourStock(self, Ingrédient, quantité):
 #         if quantité < 0:
