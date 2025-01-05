@@ -19,16 +19,17 @@ def ecrire_database(data):
         json.dump(data, db, indent=4)
 
 class InterfaceGerant:
-    def __init__(self, root):
+    def __init__(self, root, inventaire):
         self.root = root
+        self.inventaire = inventaire
         self.root.title("Tableau de Bord - Gérant")
-        self.root.geometry("600x400")
+        self.root.geometry("800x600")
         
         tk.Label(root, text="Interface Gérant", font=("Arial", 20, "bold")).pack(pady=20)
         
         # Boutons des fonctionnalités
-        tk.Button(root, text="Gérer Employés", command=self.gerer_employes).pack(pady=10)
-        tk.Button(root, text="Consulter Rapports", command=self.consulter_rapports).pack(pady=10)
+        tk.Button(root, text="Gérer Inventaire", command=self.gerer_employes).pack(pady=10)
+        tk.Button(root, text="Consulter Stock", command=self.consulter_rapports).pack(pady=10)
         tk.Button(root, text="Se Déconnecter", command=root.quit).pack(pady=10)
 
 
