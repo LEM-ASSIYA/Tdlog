@@ -138,10 +138,28 @@ class InterfaceClient:
         self.label_total.config(text=f"Total : {self.total}€")
     
     def confirmer_commande(self):
-        self.historique_commandes.append({"plats": self.selection, "total": self.total, "allergies": self.allergies})
-        messagebox.showinfo("Commande", f"Commande confirmée. Total : {self.total}€\nAllergies : {self.allergies}")
+        data = lire_database()
+        nouvelle_commande = {
+            "id": len(data["commandes"]) + 1,
+            "plats": self.selection,
+            "total": self.total,
+            "allergies": self.allergies,
+            "statut": "En attente",
+            "type_client": self.statut,
+            "table": self.numero_table,
+            "adresse": self.adresse,
+            "timestamp": time.time()
+        }
+        data["commandes"].append(nouvelle_commande)
+        ecrire_database(data)
+        
+        self.historique_commandes.append(nouvelle_commande)
+        messagebox.showinfo(
+            "Commande", 
+            f"Commande confirmée.\nTotal : {self.total}€\nStatut : {self.statut}\nAdresse : {self.adresse or 'Aucune'}"
+        )
         self.frame_commande.destroy()
-    
+
     def payer_facture(self):
         paiement_fenetre = tk.Toplevel(self.root)
         paiement_fenetre.title("Payer Facture")

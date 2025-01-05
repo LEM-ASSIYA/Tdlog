@@ -1,11 +1,4 @@
-
-
-<<<<<<< Updated upstream
 from utilisateur import Utilisateur
-
-
-=======
->>>>>>> Stashed changes
 class Client(Utilisateur):
     def __init__(self, id, nom, email, mot_de_passe, adresse, allergies=None):
         super().__init__(id, nom, email, mot_de_passe)
