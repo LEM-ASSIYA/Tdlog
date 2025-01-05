@@ -9,7 +9,7 @@ from client_interface import InterfaceClient
 from gerant_interface import InterfaceGerant
 from serveur_interface import InterfaceServeur
 from livreur_interface import InterfaceLivreur
-from inventaire import Inventaire  # Import de la classe Inventaire
+from Inventaire import Inventaire  # Import de la classe Inventaire
 
 
 
