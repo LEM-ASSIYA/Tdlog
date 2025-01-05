@@ -1,6 +1,7 @@
 import unittest
-import Client, Commande,Facture, Reservation, Plat, Menu
-
+import Commande,Facture,Plat, Menu
+from client import Client
+from Reservation import Reservation
 class TestClient(unittest.TestCase):
 
     def setUp(self):
@@ -42,6 +43,7 @@ class TestClient(unittest.TestCase):
         with self.assertLogs(level='INFO') as log:
             self.client.faire_reservation(reservation)
             self.assertIn('Réservation 301 faite au nom de Jean Dupont', log.output[0])
+
 
     def test_mettre_a_jour_infos(self):
         # Mise à jour des informations du client
