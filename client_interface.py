@@ -205,7 +205,13 @@ class InterfaceClient:
         recommandations_fenetre.title("Recommandations")
         tk.Label(recommandations_fenetre, text="Plats recommandés : Salade, Pâtes").pack(pady=10)
     
-
+    def se_deconnecter(self):
+        self.root.destroy()
+        from main import AuthentificationApp
+        root = tk.Tk()
+        app = AuthentificationApp(root)
+        root.mainloop()
+        
 if __name__ == '__main__':
     root = tk.Tk()
     app = InterfaceClient(root)
