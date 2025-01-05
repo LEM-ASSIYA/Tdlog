@@ -1,11 +1,9 @@
 import json
-import osc
-
+import os
 class Inventaire:
     def __init__(self, idInventaire=None, listeIngrédients=None, quantitéIngrédient=None, database_file='database.json'):
         self.database_file = database_file
         self.stock = {}
-
 
         if idInventaire is not None and listeIngrédients is not None and quantitéIngrédient is not None:
             # Si les ingrédients et quantités sont fournis, initialisez l'inventaire
@@ -16,9 +14,6 @@ class Inventaire:
         else:
             self.stock = self.charger_inventaire()  # Charger l'inventaire depuis le fichier JSON
 
-
-
-
     def charger_inventaire(self):
         """Charger l'inventaire depuis la base de données JSON"""
         if not os.path.exists(self.database_file):
@@ -27,7 +22,6 @@ class Inventaire:
         with open(self.database_file, 'r') as db:
             data = json.load(db)
             return data.get("inventaire", {})
-        
 
     def sauvegarder_inventaire(self):
         """Sauvegarder l'inventaire mis à jour dans la base de données JSON"""
@@ -48,10 +42,7 @@ class Inventaire:
             self.stock[ingrédient] = quantité
         else:
             self.stock[ingrédient] = quantité
-
-
-
-
+        
         self.sauvegarder_inventaire()  # Sauvegarder après modification
         return f"Stock de {ingrédient} mis à jour à {quantité}."
     
@@ -61,6 +52,3 @@ class Inventaire:
             raise KeyError(f"Erreur : {ingrédient} n'est pas dans la liste des ingrédients.")
         
         return f"Stock de {ingrédient} : {self.stock[ingrédient]}"
-
-
-
