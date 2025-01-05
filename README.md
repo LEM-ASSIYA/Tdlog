@@ -13,3 +13,10 @@ Cette application a été conçue pour répondre aux besoins variés des établi
     Attribution automatique des tables aux serveurs en fonction de leur disponibilité.
     Gestion des horaires de travail des employés.
     Suivi des performances individuelles à partir des retours clients.
+
+*Avantages Clés de l'Application
+-Efficacité : Toutes les opérations, des commandes à la facturation, sont réalisées rapidement et sans effort manuel.
+-Personnalisation : Chaque restaurant peut adapter l'application à ses besoins spécifiques.
+-Fiabilité : Grâce à l'algorithme simplex, la gestion des stocks est toujours optimale.
+-Collaboration : Les outils interactifs, comme le mini chat et l'assistant IA, améliorent la communication interne.
+-Évolutivité : L'architecture permet d'ajouter facilement de nouvelles fonctionnalités à mesure que le restaurant se développe.
