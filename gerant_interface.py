@@ -78,5 +78,31 @@ class InterfaceGerant:
         quantity_entry = tk.Entry(fenetre_inventaire)
         quantity_entry.pack(pady=5)
 
-    def consulter_rapports(self):
-        messagebox.showinfo("Rapports", "Affichage des rapports.")
+        def mettre_a_jour_stock():
+            """Met à jour l'inventaire et actualise l'affichage."""
+            ingrédient = ingredient_entry.get()
+            try:
+                quantité = int(quantity_entry.get())
+                message = self.inventaire.mettre_à_jour_stock(ingrédient, quantité)
+
+                # Sauvegarder dans JSON après modification
+                data = lire_database()
+                data["inventaire"] = self.inventaire.stock
+                ecrire_database(data)
+
+                # Recharger les données actualisées de l'inventaire depuis le fichier JSON
+                data = lire_database()
+                inventaire_data = data.get("inventaire", {})
+
+                # Mettre à jour l'affichage du tableau
+                for item in tree.get_children():
+                    tree.delete(item)
+                for ingrédient, quantité in inventaire_data.items():
+                    tree.insert("", "end", values=(ingrédient, quantité))
+
+                messagebox.showinfo("Succès", message)
+            except ValueError as e:
+                messagebox.showerror("Erreur", str(e))
+
+        tk.Button(fenetre_inventaire, text="Mettre à jour", command=mettre_a_jour_stock).pack(pady=10)
+
