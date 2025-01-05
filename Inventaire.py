@@ -37,18 +37,21 @@ class Inventaire:
 
 
 
+    def sauvegarder_inventaire(self):
+        """Sauvegarder l'inventaire mis à jour dans la base de données JSON"""
+        with open(self.database_file, 'r') as db:
+            data = json.load(db)
+        
+        data["inventaire"] = self.stock
+        
+        with open(self.database_file, 'w') as db:
+            json.dump(data, db, indent=4)
 
 
-#     def mettreÀJourStock(self, Ingrédient, quantité):
-#         if quantité < 0:
-#             raise ValueError(f"Erreur : la quantité pour {Ingrédient} doit être positive.")
-#         if Ingrédient in self.stock:
-#             self.stock[Ingrédient] = quantité
-#         else:
-#             self.stock[Ingrédient] = quantité  
 
-#         return f"Stock de {Ingrédient} mis à jour à {quantité}."
-    
+
+
+
 #     def consulterStock(self, ingrédient):
 #         if ingrédient not in self.stock:
 #             raise KeyError(f"Erreur : {ingrédient} n'est pas dans la liste des ingrédients.")
