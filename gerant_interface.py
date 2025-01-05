@@ -4,6 +4,20 @@ import json
 import os
 from Inventaire import Inventaire
 
+# Fichier JSON pour stocker les données
+DATABASE_FILE = 'database.json'
+if not os.path.exists(DATABASE_FILE):
+    with open(DATABASE_FILE, 'w') as db:
+        json.dump({"commandes": [], "notifications": [], "inventaire": {}}, db)
+
+def lire_database():
+    with open(DATABASE_FILE, 'r') as db:
+        return json.load(db)
+
+def ecrire_database(data):
+    with open(DATABASE_FILE, 'w') as db:
+        json.dump(data, db, indent=4)
+
 class InterfaceGerant:
     def __init__(self, root):
         self.root = root
