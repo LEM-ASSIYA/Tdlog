@@ -42,9 +42,15 @@ class AuthentificationApp:
         self.label_titre.pack(pady=20)
 
 
-#         # Titre
-#         self.label_titre = tk.Label(root, text="Connexion", font=("Arial", 18, "bold"))
-#         self.label_titre.pack(pady=20)
+
+
+        # Champ Nom d'utilisateur
+        self.label_username = tk.Label(root, text="Nom d'utilisateur:")
+        self.label_username.pack()
+        self.entry_username = tk.Entry(root)
+        self.entry_username.pack(pady=5)
+
+
 
 #         # Champ Nom d'utilisateur
 #         self.label_username = tk.Label(root, text="Nom d'utilisateur:")
