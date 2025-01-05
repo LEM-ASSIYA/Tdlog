@@ -170,7 +170,7 @@ class AuthentificationApp:
 
 
 
-# if __name__ == "__main__":
-#     root = tk.Tk()
-#     app = AuthentificationApp(root)
-#     root.mainloop()
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = AuthentificationApp(root)
+    root.mainloop()
