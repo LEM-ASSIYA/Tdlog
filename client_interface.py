@@ -68,7 +68,29 @@ class InterfaceClient:
         self.label_adresse = tk.Label(self.frame_allergies, text="Adresse pour livraison :")
         self.entry_adresse = tk.Entry(self.frame_allergies)
 
-        
+        def toggle_entries():
+            if self.statut_var.get() == "sur place":
+                self.label_table.pack(pady=5)
+                self.entry_table.pack(pady=5)
+                self.label_adresse.pack_forget()
+                self.entry_adresse.pack_forget()
+            else:
+                self.label_adresse.pack(pady=5)
+                self.entry_adresse.pack(pady=5)
+                self.label_table.pack_forget()
+                self.entry_table.pack_forget()
+
+        self.statut_var.trace_add("write", lambda *args: toggle_entries())
+
+        # ✅ Allergies
+        tk.Label(self.frame_allergies, text="Avez-vous des allergies ? (Laissez vide si non)").pack(pady=5)
+        self.entry_allergies = tk.Entry(self.frame_allergies)
+        self.entry_allergies.pack(pady=5)
+
+        tk.Button(self.frame_allergies, text="Suivant", command=self.page_commande).pack(pady=10)
+
+
+
     def page_commande(self):
         self.allergies = self.entry_allergies.get()
         self.frame_allergies.destroy()
