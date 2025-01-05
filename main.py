@@ -162,7 +162,11 @@ class AuthentificationApp:
             root.mainloop()  
 
 
-
+    def revenir_authentification(self):
+        self.root.destroy()
+        root = tk.Tk()
+        app = AuthentificationApp(root)
+        root.mainloop()
 
 
 
