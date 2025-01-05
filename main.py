@@ -69,35 +69,74 @@ class AuthentificationApp:
 
 
 
+    def authentifier(self):
+        username = self.entry_username.get()
+        password = self.entry_password.get()
+        data = lire_database()
+        utilisateurs = data.get("utilisateurs", {})
 
-#         # Bouton Connexion
-#         self.btn_login = tk.Button(root, text="Se connecter", command=self.authentifier)
-#         self.btn_login.pack(pady=20)
+        if username in utilisateurs and utilisateurs[username]["mot_de_passe"] == password:
+            role = utilisateurs[username]["role"]
+            messagebox.showinfo("Connexion réussie", f"Bienvenue {username}, rôle : {role}.")
+            self.ouvrir_interface_role(role)
+        else:
+            messagebox.showerror("Erreur", "Nom d'utilisateur ou mot de passe incorrect.")
 
-#     def authentifier(self):
-#         username = self.entry_username.get()
-#         password = self.entry_password.get()
 
-#         if username in UTILISATEURS and UTILISATEURS[username]["mot_de_passe"] == password:
-#             role = UTILISATEURS[username]["role"]
-#             messagebox.showinfo("Connexion réussie", f"Bienvenue {username}, rôle : {role}.")
-#             self.ouvrir_interface_role(role)
-#         else:
-#             messagebox.showerror("Erreur", "Nom d'utilisateur ou mot de passe incorrect.")
+    def inscrire(self):
+        inscription_fenetre = tk.Toplevel(self.root)
+        inscription_fenetre.title("Inscription")
+        inscription_fenetre.geometry("400x500")
 
-#     def ouvrir_interface_role(self, role):
-#         if role == "chef":
-#             top = tk.Toplevel(self.root)
-#             app = InterfaceChef(top)
-#         elif role == "client":
-#             top = tk.Toplevel(self.root)
-#             app = InterfaceClient(top)
-#         elif role == "gerant":
-#             top = tk.Toplevel(self.root)
-#             app = InterfaceGerant(top)
-#         elif role == "serveur":
-#             top = tk.Toplevel(self.root)
-#             app = InterfaceServeur(top)
+        tk.Label(inscription_fenetre, text="Nom d'utilisateur:").pack(pady=5)
+        entry_new_username = tk.Entry(inscription_fenetre)
+        entry_new_username.pack(pady=5)
+
+        tk.Label(inscription_fenetre, text="Mot de passe:").pack(pady=5)
+        entry_new_password = tk.Entry(inscription_fenetre, show='*')
+        entry_new_password.pack(pady=5)
+
+        tk.Label(inscription_fenetre, text="Adresse:").pack(pady=5)
+        entry_adresse = tk.Entry(inscription_fenetre)
+        entry_adresse.pack(pady=5)
+
+        tk.Label(inscription_fenetre, text="Rôle (client, chef, gerant, serveur,livreur):").pack(pady=5)
+        entry_role = tk.Entry(inscription_fenetre)
+        entry_role.pack(pady=5)
+
+        tk.Button(inscription_fenetre, text="Créer un compte", command=lambda: self.enregistrer_utilisateur(
+            entry_new_username.get(), entry_new_password.get(), entry_adresse.get(), entry_role.get(), inscription_fenetre
+        )).pack(pady=10)
+
+    def inscrire(self):
+        inscription_fenetre = tk.Toplevel(self.root)
+        inscription_fenetre.title("Inscription")
+        inscription_fenetre.geometry("400x500")
+
+        tk.Label(inscription_fenetre, text="Nom d'utilisateur:").pack(pady=5)
+        entry_new_username = tk.Entry(inscription_fenetre)
+        entry_new_username.pack(pady=5)
+
+        tk.Label(inscription_fenetre, text="Mot de passe:").pack(pady=5)
+        entry_new_password = tk.Entry(inscription_fenetre, show='*')
+        entry_new_password.pack(pady=5)
+
+        tk.Label(inscription_fenetre, text="Adresse:").pack(pady=5)
+        entry_adresse = tk.Entry(inscription_fenetre)
+        entry_adresse.pack(pady=5)
+
+        tk.Label(inscription_fenetre, text="Rôle (client, chef, gerant, serveur,livreur):").pack(pady=5)
+        entry_role = tk.Entry(inscription_fenetre)
+        entry_role.pack(pady=5)
+
+        tk.Button(inscription_fenetre, text="Créer un compte", command=lambda: self.enregistrer_utilisateur(
+            entry_new_username.get(), entry_new_password.get(), entry_adresse.get(), entry_role.get(), inscription_fenetre
+        )).pack(pady=10)
+
+
+
+
+
 
 # if __name__ == "__main__":
 #     root = tk.Tk()
