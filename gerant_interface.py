@@ -1,6 +1,8 @@
 import tkinter as tk
-
-from tkinter import messagebox
+from tkinter import ttk, messagebox
+import json
+import os
+from Inventaire import Inventaire
 
 class InterfaceGerant:
     def __init__(self, root):
