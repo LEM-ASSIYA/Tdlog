@@ -7,10 +7,6 @@ class Inventaire:
         self.stock = {}
 
 
-
-
-
-
         if idInventaire is not None and listeIngrédients is not None and quantitéIngrédient is not None:
             # Si les ingrédients et quantités sont fournis, initialisez l'inventaire
             if len(listeIngrédients) != len(quantitéIngrédient):
@@ -56,8 +52,15 @@ class Inventaire:
 
 
 
+        self.sauvegarder_inventaire()  # Sauvegarder après modification
+        return f"Stock de {ingrédient} mis à jour à {quantité}."
+    
+    def consulter_stock(self, ingrédient):
+        """Consulter le stock d'un ingrédient"""
+        if ingrédient not in self.stock:
+            raise KeyError(f"Erreur : {ingrédient} n'est pas dans la liste des ingrédients.")
+        
+        return f"Stock de {ingrédient} : {self.stock[ingrédient]}"
 
 
-# invent = Inventaire([1, 2, 3], ["Tomates", "Fromage", "Viande"], [15, 5, 10])
-# print(invent.mettreÀJourStock("Viande", 20)) 
-# print(invent.consulterStock("Fromage"))
+
