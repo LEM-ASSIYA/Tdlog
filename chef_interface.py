@@ -47,6 +47,7 @@ class Utilisateur(ABC):
         pass
 
 
+
 # ✅ Classe Chef
 class Chef(Utilisateur):
     def __init__(self, id, nom, email, mot_de_passe):
@@ -77,8 +78,10 @@ class Chef(Utilisateur):
     def notifier_serveur(self):
         print("Serveur notifié pour récupération de la commande.")
 
-
-# ✅ Interface d'Authentification
+import tkinter as tk
+from tkinter import messagebox
+from utilisateur import Utilisateur
+#  Interface d'Authentification
 class AuthentificationApp:
     def __init__(self, root):
         self.root = root
