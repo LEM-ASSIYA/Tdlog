@@ -109,6 +109,59 @@ class AuthentificationApp:
         )).pack(pady=10)
 
 
+    def enregistrer_utilisateur(self, username, password, adresse, role, fenetre):
+        if not username or not password or not role:
+            messagebox.showerror("Erreur", "Tous les champs doivent être remplis.")
+            return
+
+        if role not in ['client', 'chef', 'gerant', 'serveur','livreur']:
+            messagebox.showerror("Erreur", "Le rôle doit être client, chef, gerant, serveur ou livreur.")
+            return
+
+        data = lire_database()
+        utilisateurs = data.get("utilisateurs", {})
+
+        if username in utilisateurs:
+            messagebox.showerror("Erreur", "Ce nom d'utilisateur est déjà pris.")
+        else:
+            utilisateurs[username] = {
+                "mot_de_passe": password,
+                "role": role,
+                "adresse": adresse
+            }
+            data["utilisateurs"] = utilisateurs
+            ecrire_database(data)
+            messagebox.showinfo("Succès", "Compte créé avec succès !")
+            fenetre.destroy()
+
+    def ouvrir_interface_role(self, role):
+        self.root.destroy()
+        data = lire_database()
+        inventaire_data = data.get("inventaire", {})
+        inventaire = Inventaire(1, list(inventaire_data.keys()), list(inventaire_data.values()))
+
+        if role == "chef":
+            root = tk.Tk()
+            app = InterfaceChef(root)
+            root.mainloop()
+        elif role == "client":
+            root = tk.Tk()
+            app = InterfaceClient(root)
+            root.mainloop()
+        elif role == "gerant":
+            root = tk.Tk()
+            app = InterfaceGerant(root, inventaire)
+            root.mainloop()
+        elif role == "serveur":
+            root = tk.Tk()
+            app = InterfaceServeur(root)
+            root.mainloop()
+        elif role == "livreur":
+            root = tk.Tk()
+            app = InterfaceLivreur(root, livreur_nom= 'username')
+            root.mainloop()  
+
+
 
 
 
