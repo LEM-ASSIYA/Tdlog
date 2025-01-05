@@ -106,5 +106,3 @@ class InterfaceGerant:
 
         tk.Button(fenetre_inventaire, text="Mettre à jour", command=mettre_a_jour_stock).pack(pady=10)
 
-    def consulter_rapports(self):
-        messagebox.showinfo("Rapports", "Affichage des rapports.")
