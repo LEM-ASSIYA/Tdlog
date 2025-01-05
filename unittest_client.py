@@ -1,7 +1,12 @@
 import unittest
+<<<<<<< Updated upstream
 import Commande,Facture,Plat, Menu
 from client import Client
 from Reservation import Reservation
+=======
+import Client, Commande,Facture,Reservation, Plat, Menu
+
+>>>>>>> Stashed changes
 class TestClient(unittest.TestCase):
 
     def setUp(self):

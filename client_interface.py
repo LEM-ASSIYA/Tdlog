@@ -1,14 +1,35 @@
 
 import tkinter as tk
 from tkinter import messagebox
+import json
+import os
+import time
+
+
+# ✅ Initialisation de la base de données JSON
+DATABASE_FILE = 'database.json'
+if not os.path.exists(DATABASE_FILE):
+    with open(DATABASE_FILE, 'w') as db:
+        json.dump({"commandes": [], "notifications": [], "utilisateurs": {}}, db)
+
+
+def lire_database():
+    with open(DATABASE_FILE, 'r') as db:
+        return json.load(db)
+
+
+def ecrire_database(data):
+    with open(DATABASE_FILE, 'w') as db:
+        json.dump(data, db, indent=4)
+
 
 class InterfaceClient:
     def __init__(self, root):
         self.root = root
         self.root.title("Interface Client")
         self.root.geometry("600x500")
+
         
-        # Page principale
         self.frame_principal = tk.Frame(root)
         self.frame_principal.pack(fill="both", expand=True)
 
@@ -19,23 +40,35 @@ class InterfaceClient:
         tk.Button(self.frame_principal, text="Donner un avis", command=self.donner_avis).pack(pady=10)
         tk.Button(self.frame_principal, text="Afficher l'historique", command=self.afficher_historique).pack(pady=10)
         tk.Button(self.frame_principal, text="Obtenir des recommandations", command=self.afficher_recommandations).pack(pady=10)
-        tk.Button(self.frame_principal, text="Se Déconnecter", command=root.quit).pack(pady=10)
+        tk.Button(self.frame_principal, text="Se Déconnecter", command=self.se_deconnecter).pack(pady=10)
         
         self.historique_commandes = []
         self.total = 0
         self.selection = []
         self.allergies = ""
+        self.statut = "à emporter"
+        self.numero_table = None
+        self.adresse = ""
     
     def page_allergies(self):
         self.frame_allergies = tk.Toplevel(self.root)
-        self.frame_allergies.title("Informations sur les allergies")
+        self.frame_allergies.title("Informations sur le statut du client")
+
+        # ✅ Statut : Sur place ou à emporter
+        tk.Label(self.frame_allergies, text="Êtes-vous sur place ou à emporter ?").pack(pady=5)
+        self.statut_var = tk.StringVar(value="à emporter")
+        tk.Radiobutton(self.frame_allergies, text="Sur place", variable=self.statut_var, value="sur place").pack()
+        tk.Radiobutton(self.frame_allergies, text="À emporter", variable=self.statut_var, value="à emporter").pack()
+
+        # ✅ Champ pour le numéro de table (visible seulement si "sur place" est sélectionné)
+        self.label_table = tk.Label(self.frame_allergies, text="Numéro de table :")
+        self.entry_table = tk.Entry(self.frame_allergies)
+
+        # ✅ Champ pour l'adresse (visible seulement si "à emporter" est sélectionné)
+        self.label_adresse = tk.Label(self.frame_allergies, text="Adresse pour livraison :")
+        self.entry_adresse = tk.Entry(self.frame_allergies)
+
         
-        tk.Label(self.frame_allergies, text="Avez-vous des allergies ? (Laissez vide si non)").pack(pady=5)
-        self.entry_allergies = tk.Entry(self.frame_allergies)
-        self.entry_allergies.pack(pady=5)
-        
-        tk.Button(self.frame_allergies, text="Suivant", command=self.page_commande).pack(pady=10)
-    
     def page_commande(self):
         self.allergies = self.entry_allergies.get()
         self.frame_allergies.destroy()
