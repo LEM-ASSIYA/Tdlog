@@ -13,19 +13,22 @@ from inventaire import Inventaire  # Import de la classe Inventaire
 
 
 
+# ✅ Initialisation de la base de données JSON
+DATABASE_FILE = 'database.json'
+if not os.path.exists(DATABASE_FILE):
+    with open(DATABASE_FILE, 'w') as db:
+        json.dump({"utilisateurs": {}, "commandes": [], "notifications": [], "inventaire": {}}, db)
+
+def lire_database():
+    with open(DATABASE_FILE, 'r') as db:
+        return json.load(db)
+
+def ecrire_database(data):
+    with open(DATABASE_FILE, 'w') as db:
+        json.dump(data, db, indent=4)
 
 
 
-# # Utilisateurs temporaires pour authentification
-# UTILISATEURS = {
-#     "chef": {"mot_de_passe": "chef123", "role": "chef"},
-#     "client": {"mot_de_passe": "client123", "role": "client"},
-#     "gerant": {"mot_de_passe": "gerant123", "role": "gerant"},
-#     "serveur":{"mot_de_passe": "serveur123", "role": "serveur"},
-#     "serveur1":{"mot_de_passe": "serveur123", "role": "serveur"},
-#     "serveur2":{"mot_de_passe": "serveur123", "role": "serveur"},
-#     "serveur3":{"mot_de_passe": "serveur123", "role": "serveur"},
-# }
 
 # class AuthentificationApp:
 #     def __init__(self, root):
