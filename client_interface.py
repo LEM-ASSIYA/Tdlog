@@ -92,7 +92,11 @@ class InterfaceClient:
 
 
     def page_commande(self):
+        # Récupérer les valeurs avant de détruire la fenêtre
         self.allergies = self.entry_allergies.get()
+        self.statut = self.statut_var.get()
+        self.numero_table = self.entry_table.get() if self.statut == "sur place" else None
+
         self.frame_allergies.destroy()
         
         self.frame_commande = tk.Toplevel(self.root)
