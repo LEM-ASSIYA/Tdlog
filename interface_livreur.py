@@ -56,3 +56,36 @@ class InterfaceLivreur:
                     tk.END,
                     f"ID: {commande['id']} | Plats: {', '.join(commande['plats'])} | Adresse: {commande.get('adresse', 'Non spécifiée')}"
                 )
+
+    def marquer_livree(self):
+        """Marquer une commande comme livrée."""
+        selection = self.commandes_listbox.curselection()
+        if not selection:
+            messagebox.showerror("Erreur", "Veuillez sélectionner une commande à marquer comme livrée.")
+            return
+        
+        index = selection[0]
+        data = lire_database()
+        commandes = data.get("commandes", [])
+        
+        commande = commandes[index]
+        commande["statut"] = "Livrée"
+        ecrire_database(data)
+        
+        self.load_commandes()
+        messagebox.showinfo("Livraison", "Commande marquée comme livrée.")
+    
+    def se_deconnecter(self):
+        """Se déconnecter et retourner à l'écran d'authentification."""
+        self.root.destroy()
+        from main import AuthentificationApp
+        root = tk.Tk()
+        app = AuthentificationApp(root)
+        root.mainloop()
+
+
+# ✅ Test Interface Livreur
+if __name__ == '__main__':
+    root = tk.Tk()
+    app = InterfaceLivreur(root, livreur_nom="Livreur123")
+    root.mainloop()
