@@ -1,3 +1,4 @@
+from utilisateur import Utilisateur
 class Gerant(Utilisateur):
     def __init__(self, id, nom, email, mot_de_passe):
         super()._init_(id, nom, email, mot_de_passe)
