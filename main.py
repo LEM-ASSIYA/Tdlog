@@ -57,26 +57,37 @@ class AuthentificationApp:
         self.entry_password.pack(pady=5)
 
 
-#         # Champ Mot de passe
-#         self.label_password = tk.Label(root, text="Mot de passe:")
-#         self.label_password.pack()
-#         self.entry_password = tk.Entry(root, show="*")
-#         self.entry_password.pack(pady=5)
 
-#         # Bouton Connexion
-#         self.btn_login = tk.Button(root, text="Se connecter", command=self.authentifier)
-#         self.btn_login.pack(pady=20)
 
-#     def authentifier(self):
-#         username = self.entry_username.get()
-#         password = self.entry_password.get()
+       # Bouton Connexion
+        self.btn_login = tk.Button(root, text="Se connecter", command=self.authentifier)
+        self.btn_login.pack(pady=10)
 
-#         if username in UTILISATEURS and UTILISATEURS[username]["mot_de_passe"] == password:
-#             role = UTILISATEURS[username]["role"]
-#             messagebox.showinfo("Connexion réussie", f"Bienvenue {username}, rôle : {role}.")
-#             self.ouvrir_interface_role(role)
-#         else:
-#             messagebox.showerror("Erreur", "Nom d'utilisateur ou mot de passe incorrect.")
+        # Bouton Inscription
+        self.btn_register = tk.Button(root, text="S'inscrire", command=self.inscrire)
+        self.btn_register.pack(pady=10)
+
+
+
+    def authentifier(self):
+        username = self.entry_username.get()
+        password = self.entry_password.get()
+        data = lire_database()
+        utilisateurs = data.get("utilisateurs", {})
+
+        if username in utilisateurs and utilisateurs[username]["mot_de_passe"] == password:
+            role = utilisateurs[username]["role"]
+            messagebox.showinfo("Connexion réussie", f"Bienvenue {username}, rôle : {role}.")
+            self.ouvrir_interface_role(role)
+        else:
+            messagebox.showerror("Erreur", "Nom d'utilisateur ou mot de passe incorrect.")
+
+
+
+
+
+
+
 
 #     def ouvrir_interface_role(self, role):
 #         if role == "chef":
