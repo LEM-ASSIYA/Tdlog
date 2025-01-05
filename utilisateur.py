@@ -10,3 +10,11 @@ class Utilisateur(ABC):
         self.email = email
         self.mot_de_passe = mot_de_passe
         self.logged_in = False
+
+    @abstractmethod
+    def se_connecter(self, mot_de_passe):
+        pass
+
+    @abstractmethod
+    def se_deconnecter(self):
+        pass
