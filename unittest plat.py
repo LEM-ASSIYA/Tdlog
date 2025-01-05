@@ -1,10 +1,10 @@
 import unittest
-import plat_menu
+import Plat 
 class TestPlat(unittest.TestCase):
     
     def test_initialisation(self):
         # Test de l'initialisation d'un plat
-        plat = plat_menu(1, "Pizza", 12.5, 20)
+        plat = Plat(1, "Pizza", 12.5, 20)
         
         self.assertEqual(plat.id_plat, 1)
         self.assertEqual(plat.nom, "Pizza")
@@ -13,7 +13,7 @@ class TestPlat(unittest.TestCase):
 
     def test_attributs_types(self):
         # Test des types des attributs
-        plat = plat_menu(1, "Pizza", 12.5, 20)
+        plat = Plat(1, "Pizza", 12.5, 20)
         
         self.assertIsInstance(plat.id_plat, int)
         self.assertIsInstance(plat.nom, str)

@@ -1,11 +1,14 @@
 class Paiement:
-    def __init__(self, id_paiement, mode_paiement, montant):
+
+    def __init__(self, id_paiement, mode_paiement, montant) :
         self.id_paiement = id_paiement
         self.mode_paiement = mode_paiement
-        self.montant = montant
+        self.montant = montant 
 
     def effectuer_paiement(self):
+
         print(f"Paiement de {self.montant} effectué par {self.mode_paiement}.")
 
     def rembourser_paiement(self):
+
         print(f"Le paiement de {self.montant} a été remboursé.")
