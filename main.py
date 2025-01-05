@@ -108,31 +108,6 @@ class AuthentificationApp:
             entry_new_username.get(), entry_new_password.get(), entry_adresse.get(), entry_role.get(), inscription_fenetre
         )).pack(pady=10)
 
-    def inscrire(self):
-        inscription_fenetre = tk.Toplevel(self.root)
-        inscription_fenetre.title("Inscription")
-        inscription_fenetre.geometry("400x500")
-
-        tk.Label(inscription_fenetre, text="Nom d'utilisateur:").pack(pady=5)
-        entry_new_username = tk.Entry(inscription_fenetre)
-        entry_new_username.pack(pady=5)
-
-        tk.Label(inscription_fenetre, text="Mot de passe:").pack(pady=5)
-        entry_new_password = tk.Entry(inscription_fenetre, show='*')
-        entry_new_password.pack(pady=5)
-
-        tk.Label(inscription_fenetre, text="Adresse:").pack(pady=5)
-        entry_adresse = tk.Entry(inscription_fenetre)
-        entry_adresse.pack(pady=5)
-
-        tk.Label(inscription_fenetre, text="Rôle (client, chef, gerant, serveur,livreur):").pack(pady=5)
-        entry_role = tk.Entry(inscription_fenetre)
-        entry_role.pack(pady=5)
-
-        tk.Button(inscription_fenetre, text="Créer un compte", command=lambda: self.enregistrer_utilisateur(
-            entry_new_username.get(), entry_new_password.get(), entry_adresse.get(), entry_role.get(), inscription_fenetre
-        )).pack(pady=10)
-
 
 
 
