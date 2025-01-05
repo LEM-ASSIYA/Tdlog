@@ -29,13 +29,18 @@ def ecrire_database(data):
 
 
 
+# ✅ Interface d'Authentification
+class AuthentificationApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Authentification")
+        self.root.geometry("400x400")
+        self.root.resizable(False, False)
 
-# class AuthentificationApp:
-#     def __init__(self, root):
-#         self.root = root
-#         self.root.title("Authentification")
-#         self.root.geometry("400x300")
-#         self.root.resizable(False, False)
+        # Titre
+        self.label_titre = tk.Label(root, text="Connexion", font=("Arial", 18, "bold"))
+        self.label_titre.pack(pady=20)
+
 
 #         # Titre
 #         self.label_titre = tk.Label(root, text="Connexion", font=("Arial", 18, "bold"))
