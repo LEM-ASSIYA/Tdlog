@@ -8,6 +8,22 @@ class Inventaire:
 
 
 
+
+
+
+        if idInventaire is not None and listeIngrédients is not None and quantitéIngrédient is not None:
+            # Si les ingrédients et quantités sont fournis, initialisez l'inventaire
+            if len(listeIngrédients) != len(quantitéIngrédient):
+                raise ValueError("La longueur de 'listeIngrédients' doit correspondre à celle de 'quantitésIngrédients'.")
+            self.stock = dict(zip(listeIngrédients, quantitéIngrédient))
+            self.sauvegarder_inventaire()  # Sauvegarder l'inventaire dans le fichier JSON
+        else:
+            self.stock = self.charger_inventaire()  # Charger l'inventaire depuis le fichier JSON
+
+
+
+
+
 #Class Inventaire :
 
 #     def __init__(self, idInventaire, listeIngrédients, quantitéIngrédient):
