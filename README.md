@@ -20,3 +20,17 @@ Cette application a été conçue pour répondre aux besoins variés des établi
 -Fiabilité : Grâce à l'algorithme simplex, la gestion des stocks est toujours optimale.
 -Collaboration : Les outils interactifs, comme le mini chat et l'assistant IA, améliorent la communication interne.
 -Évolutivité : L'architecture permet d'ajouter facilement de nouvelles fonctionnalités à mesure que le restaurant se développe.
+
+*Cas d'Utilisation
+-Scénario 1 : Commande Client
+    Un client passe une commande via l'application.
+    Les plats commandés sont automatiquement assignés à un chef disponible.
+    Le serveur reçoit une notification pour livrer les plats une fois prêts.
+
+-Scénario 2 : Réapprovisionnement Automatisé
+    Le niveau d'un ingrédient clé tombe en dessous du seuil minimum.
+    Une alerte est envoyée au gérant, qui peut approuver un réapprovisionnement optimisé via l'application.
+
+-Scénario 3 : Facturation et Paiement
+    Une facture est générée automatiquement à la fin du service.
+    Le client peut payer directement via l'application, et le statut de la facture est mis à jour en temps réel.
