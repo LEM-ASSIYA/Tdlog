@@ -29,23 +29,33 @@ def ecrire_database(data):
 
 
 
+# ✅ Interface d'Authentification
+class AuthentificationApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Authentification")
+        self.root.geometry("400x400")
+        self.root.resizable(False, False)
 
-# class AuthentificationApp:
-#     def __init__(self, root):
-#         self.root = root
-#         self.root.title("Authentification")
-#         self.root.geometry("400x300")
-#         self.root.resizable(False, False)
+        # Titre
+        self.label_titre = tk.Label(root, text="Connexion", font=("Arial", 18, "bold"))
+        self.label_titre.pack(pady=20)
 
-#         # Titre
-#         self.label_titre = tk.Label(root, text="Connexion", font=("Arial", 18, "bold"))
-#         self.label_titre.pack(pady=20)
 
-#         # Champ Nom d'utilisateur
-#         self.label_username = tk.Label(root, text="Nom d'utilisateur:")
-#         self.label_username.pack()
-#         self.entry_username = tk.Entry(root)
-#         self.entry_username.pack(pady=5)
+
+
+        # Champ Nom d'utilisateur
+        self.label_username = tk.Label(root, text="Nom d'utilisateur:")
+        self.label_username.pack()
+        self.entry_username = tk.Entry(root)
+        self.entry_username.pack(pady=5)
+
+        # Champ Mot de passe
+        self.label_password = tk.Label(root, text="Mot de passe:")
+        self.label_password.pack()
+        self.entry_password = tk.Entry(root, show="*")
+        self.entry_password.pack(pady=5)
+
 
 #         # Champ Mot de passe
 #         self.label_password = tk.Label(root, text="Mot de passe:")
