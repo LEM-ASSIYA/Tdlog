@@ -51,8 +51,32 @@ class InterfaceGerant:
             tree.insert("", "end", values=(ingrédient, quantité))
 
 
-    def gerer_employes(self):
-        messagebox.showinfo("Gestion Employés", "Employés gérés avec succès.")
+    def gerer_inventaire(self):
+        """Permet au gérant de modifier l'inventaire."""
+        fenetre_inventaire = tk.Toplevel(self.root)
+        fenetre_inventaire.title("Gestion de l'Inventaire")
+        fenetre_inventaire.geometry("600x400")
+
+        # Tableau pour afficher le stock
+        tree = ttk.Treeview(fenetre_inventaire, columns=("Ingrédient", "Quantité"), show="headings")
+        tree.heading("Ingrédient", text="Ingrédient")
+        tree.heading("Quantité", text="Quantité")
+        tree.pack(fill="both", expand=True)
+
+        # Recharger les données actualisées de l'inventaire depuis le fichier JSON
+        data = lire_database()
+        inventaire_data = data.get("inventaire", {})
+        for ingrédient, quantité in inventaire_data.items():
+            tree.insert("", "end", values=(ingrédient, quantité))
+
+        # Entrées pour mise à jour
+        tk.Label(fenetre_inventaire, text="Ingrédient:").pack(pady=5)
+        ingredient_entry = tk.Entry(fenetre_inventaire)
+        ingredient_entry.pack(pady=5)
+
+        tk.Label(fenetre_inventaire, text="Nouvelle Quantité:").pack(pady=5)
+        quantity_entry = tk.Entry(fenetre_inventaire)
+        quantity_entry.pack(pady=5)
 
     def consulter_rapports(self):
         messagebox.showinfo("Rapports", "Affichage des rapports.")
