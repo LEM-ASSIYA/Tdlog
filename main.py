@@ -50,13 +50,12 @@ class AuthentificationApp:
         self.entry_username = tk.Entry(root)
         self.entry_username.pack(pady=5)
 
+        # Champ Mot de passe
+        self.label_password = tk.Label(root, text="Mot de passe:")
+        self.label_password.pack()
+        self.entry_password = tk.Entry(root, show="*")
+        self.entry_password.pack(pady=5)
 
-
-#         # Champ Nom d'utilisateur
-#         self.label_username = tk.Label(root, text="Nom d'utilisateur:")
-#         self.label_username.pack()
-#         self.entry_username = tk.Entry(root)
-#         self.entry_username.pack(pady=5)
 
 #         # Champ Mot de passe
 #         self.label_password = tk.Label(root, text="Mot de passe:")
